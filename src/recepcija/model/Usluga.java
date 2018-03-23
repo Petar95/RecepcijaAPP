@@ -1,5 +1,6 @@
 package recepcija.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,22 +13,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
-public class Usluga {
+public class Usluga extends Entitet implements Serializable {
 
-    private int uslugaID;
     private String vrstaUsluge;
     private BigDecimal cijena;
 
     @Id
     @GeneratedValue
-
-    public int getUslugaID() {
-        return uslugaID;
-    }
-
-    public void setUslugaID(int uslugaID) {
-        this.uslugaID = uslugaID;
-    }
 
     public String getVrstaUsluge() {
         return vrstaUsluge;

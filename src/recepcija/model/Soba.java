@@ -1,6 +1,7 @@
 package recepcija.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,20 +15,30 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
-public class Soba implements Serializable {
+public class Soba extends Entitet implements Serializable {
 
     @Id
     @GeneratedValue
-    private int sobaID;
 
     private boolean telefon;
     private boolean internet;
     private int brojLezaja;
     private int kat;
     private int brojObroka;
+    private String BrojSobe;
+
+    public String getBrojSobe() {
+        return BrojSobe;
+    }
+
+    public void setBrojSobe(String BrojSobe) {
+        this.BrojSobe = BrojSobe;
+    }
+
+    
 
     @OneToMany(mappedBy = "soba")
-    private List<Rezervacija> rezervacije;
+    private List<Rezervacija> rezervacije = new ArrayList<>();
 
     public List<Rezervacija> getRezervacije() {
         return rezervacije;
@@ -35,14 +46,6 @@ public class Soba implements Serializable {
 
     public void setRezervacije(List<Rezervacija> rezervacije) {
         this.rezervacije = rezervacije;
-    }
-
-    public int getSobaID() {
-        return sobaID;
-    }
-
-    public void setSobaID(int sobaID) {
-        this.sobaID = sobaID;
     }
 
     public boolean isTelefon() {
@@ -83,5 +86,9 @@ public class Soba implements Serializable {
 
     public void setBrojObroka(int brojObroka) {
         this.brojObroka = brojObroka;
+    }
+    @Override
+    public String toString() {
+        return getKat()+getBrojSobe();
     }
 }

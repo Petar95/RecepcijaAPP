@@ -1,19 +1,24 @@
 package recepcija.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 // @author Petar
 @Entity
 @Table
-public class Rezervacija implements Serializable {
+public class Rezervacija extends Entitet implements Serializable {
 
-    private int rezervacijaID;
+    @Id
+    @GeneratedValue
+
     private Date datumPolaska;
     private Date datumDolaska;
     private int brojOsoba;
@@ -21,16 +26,11 @@ public class Rezervacija implements Serializable {
     @ManyToOne
     private Soba soba;
 
-    @Id
-    @GeneratedValue
+    @ManyToMany
+    private List<Usluga> usluge = new ArrayList<>();
 
-    public int getRezervacijaID() {
-        return rezervacijaID;
-    }
-
-    public void setRezervacijaID(int rezervacijaID) {
-        this.rezervacijaID = rezervacijaID;
-    }
+    @ManyToMany
+    private List<Gost> gosti = new ArrayList<>();
 
     public Date getDatumPolaska() {
         return datumPolaska;

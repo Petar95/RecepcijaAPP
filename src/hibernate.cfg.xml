@@ -17,7 +17,7 @@
     <property name="format_sql">true</property>
     
     
-    <property name="hbm2ddl.auto">create</property>
+    <property name="hbm2ddl.auto">update</property>
   
    
     <property name="connection.pool_size">1</property>
@@ -28,6 +28,7 @@
     <mapping class="recepcija.model.Rezervacija" /> 
     <mapping class="recepcija.model.Soba" />
     <mapping class="recepcija.model.Usluga" />
+    <mapping class="recepcija.model.Operater" />
     
 </session-factory>
 </hibernate-configuration>

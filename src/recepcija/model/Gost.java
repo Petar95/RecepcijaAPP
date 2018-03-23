@@ -1,5 +1,6 @@
 package recepcija.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,9 +8,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Gost {
 
-    private int gostID;
+public class Gost extends Entitet implements Serializable {
+
     private String ime;
     private String prezime;
     private int OIB;
@@ -18,14 +19,6 @@ public class Gost {
 
     @GeneratedValue
     @Id
-
-    public int getGostID() {
-        return gostID;
-    }
-
-    public void setGostID(int gostID) {
-        this.gostID = gostID;
-    }
 
     public String getIme() {
         return ime;
