@@ -1,11 +1,14 @@
 package recepcija.controller;
 
+import java.lang.reflect.ParameterizedType;
+import java.util.Date;
 import recepcija.pomocno.HibernateUtil;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import recepcija.model.Entitet;
 
-public class Obrada<T> {
+public class Obrada<T extends Entitet> {
 
     private final Session session;
 
@@ -14,10 +17,21 @@ public class Obrada<T> {
     }
 
     public T save(T entitet) {
-        session.beginTransaction();
-        session.saveOrUpdate(entitet);
-        session.getTransaction().commit();
+        if (entitet.getSifra() == 0) {
+            entitet.setDatumKreiranja(new Date());
+        } else if (entitet.getDatumBrisanja() == null) {
+            entitet.setDatumPromjene(new Date());
+        }
         return entitet;
+
+    }
+
+    public List<T> getAll() {
+        String nazivKlase = ((Class<T>) ((ParameterizedType) getClass()
+                .getGenericSuperclass()).getActualTypeArguments()[0]).getTypeName();
+        System.out.println(nazivKlase);
+        Query q = session.createQuery("from " + nazivKlase + " a where a.obrisano=false ");
+        return q.list();
     }
 
     @Deprecated

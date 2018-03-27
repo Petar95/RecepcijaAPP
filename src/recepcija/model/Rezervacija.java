@@ -22,7 +22,7 @@ public class Rezervacija extends Entitet implements Serializable {
     private Date datumPolaska;
     private Date datumDolaska;
     private int brojOsoba;
-    private int brojSobe;
+
     @ManyToOne
     private Soba soba;
 
@@ -54,14 +54,6 @@ public class Rezervacija extends Entitet implements Serializable {
 
     public void setBrojOsoba(int brojOsoba) {
         this.brojOsoba = brojOsoba;
-    }
-
-    public int getBrojSobe() {
-        return brojSobe;
-    }
-
-    public void setBrojSobe(int brojSobe) {
-        this.brojSobe = brojSobe;
     }
 
     public Soba getSoba() {
